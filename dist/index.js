@@ -49,7 +49,7 @@ function run() {
             token: core.getInput('postman-key'),
             apiId: core.getInput('postman-api-id'),
             apiVersionId: core.getInput('postman-api-version'),
-            schemaId: core.getInput('postman-api-schmea-id'),
+            schemaId: core.getInput('postman-api-schema-id'),
             schemaType: core.getInput('postman-schema-type'),
             schemaLanguage: core.getInput('postman-schema-language'),
             contentFilepath: core.getInput('schema-filepath')
