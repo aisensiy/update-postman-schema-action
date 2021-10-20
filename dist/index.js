@@ -79,11 +79,15 @@ function run() {
             });
             const json = yield response.json();
             core.info(`Update postman schema ${url} response: ${util_1.inspect(json)}`);
+            if (response.status !== 200) {
+                core.setFailed('The schema was not updated');
+            }
             // Set output
             // core.setOutput('issue-number', issueNumber)
         }
         else {
             core.info(`File not found at path '${inputs.contentFilepath}'`);
+            core.setFailed('The schema was not updated');
         }
     });
 }

@@ -26,27 +26,32 @@ async function run() {
     // Send the request to the Postman API
     const url = `https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`
     const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Api-Key': inputs.token
-        },
-        body: JSON.stringify({
-          schema: {
-            type: inputs.schemaType,
-            language: inputs.schemaLanguage,
-            schema: fileContent
-          }
-        })
-      }
-    )
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': inputs.token
+      },
+      body: JSON.stringify({
+        schema: {
+          type: inputs.schemaType,
+          language: inputs.schemaLanguage,
+          schema: fileContent
+        }
+      })
+    })
+
     const json = await response.json()
 
     core.info(`Update postman schema ${url} response: ${inspect(json)}`)
+
+    if (response.status !== 200) {
+      core.setFailed('The schema was not updated')
+    }
     // Set output
     // core.setOutput('issue-number', issueNumber)
   } else {
     core.info(`File not found at path '${inputs.contentFilepath}'`)
+    core.setFailed('The schema was not updated')
   }
 }
 
