@@ -62,7 +62,8 @@ function run() {
                 encoding: 'utf8'
             });
             // Send the request to the Postman API
-            const response = yield node_fetch_1.default(`https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`, {
+            const url = `https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`;
+            const response = yield node_fetch_1.default(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ function run() {
                 })
             });
             const json = yield response.json();
-            core.info(`Update postman schema response: ${util_1.inspect(json)}`);
+            core.info(`Update postman schema ${url} response: ${util_1.inspect(json)}`);
             // Set output
             // core.setOutput('issue-number', issueNumber)
         }

@@ -24,9 +24,8 @@ async function run() {
     })
 
     // Send the request to the Postman API
-    const response = await fetch(
-      `https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`,
-      {
+    const url = `https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`
+    const response = await fetch(url, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +42,7 @@ async function run() {
     )
     const json = await response.json()
 
-    core.info(`Update postman schema response: ${inspect(json)}`)
+    core.info(`Update postman schema ${url} response: ${inspect(json)}`)
     // Set output
     // core.setOutput('issue-number', issueNumber)
   } else {
