@@ -1,0 +1,31 @@
+name: 'Update Postman API schema from file'
+description: 'An action to update Postman API schema from a schema file, openapi3, openapi2, openapi1, raml and graphql are supported'
+inputs:
+  postman-key:
+    description: 'Postman API key'
+    required: true
+  postman-api-id:
+    description: 'Postman API id'
+    required: true
+  postman-api-version:
+    description: 'Postman API version'
+    required: true
+  postman-api-schema-id:
+    description: 'Postman schema id'
+    required: true
+  postman-schema-type:
+    description: 'Postman API schema type, allowed types are openapi3, openapi2, openapi1, raml and graphql'
+    required: true
+    default: graphql
+  postman-schema-language:
+    description: Allowed languages are json and yaml for OpenAPI and RAML schema types. GraphQL schema type accepts only graphql language
+    required: true
+    default: graphql
+  schema-filepath:
+    description: 'The schema file path'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'alert-circle'
+  color: 'orange'
