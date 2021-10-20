@@ -23,8 +23,6 @@ async function run() {
       encoding: 'utf8'
     })
 
-    console.log(fileContent)
-
     // Send the request to the Postman API
     const response = await fetch(
       `https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`,

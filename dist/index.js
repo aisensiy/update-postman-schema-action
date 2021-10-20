@@ -61,7 +61,6 @@ function run() {
             const fileContent = yield fs.promises.readFile(inputs.contentFilepath, {
                 encoding: 'utf8'
             });
-            console.log(fileContent);
             // Send the request to the Postman API
             const response = yield node_fetch_1.default(`https://api.getpostman.com/apis/${inputs.apiId}/versions/${inputs.apiVersionId}/schemas/${inputs.schemaId}`, {
                 method: 'PUT',
